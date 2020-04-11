@@ -1,24 +1,24 @@
 import java.util.Scanner;
 
-public class addTwoNumbers {
+public class AddTwoNumbers2 {
     public static void main(String[] args) {
-        addTwoNumbers addTwoNumbers = new addTwoNumbers();
-        ListNode head1 = addTwoNumbers.new ListNode(0);
-        ListNode head2 = addTwoNumbers.new ListNode(0);
+        AddTwoNumbers2 addTwoNumbers2 = new AddTwoNumbers2();
+        ListNode head1 = addTwoNumbers2.new ListNode(0);
+        ListNode head2 = addTwoNumbers2.new ListNode(0);
         ListNode p = head1;
         ListNode q = head2;
-        Solution solution = addTwoNumbers.new Solution();
+        Solution solution = addTwoNumbers2.new Solution();
         Scanner scanner = new Scanner(System.in);
         int i = 0;
         while (i < 3) {
-            p.next = addTwoNumbers.new ListNode(scanner.nextInt());
+            p.next = addTwoNumbers2.new ListNode(scanner.nextInt());
             p = p.next;
             i++;
         }
         i = 0;
         System.out.println("第二行");
         while (i < 3) {
-            q.next = addTwoNumbers.new ListNode(scanner.nextInt());
+            q.next = addTwoNumbers2.new ListNode(scanner.nextInt());
             q = q.next;
             i++;
         }
@@ -42,10 +42,10 @@ public class addTwoNumbers {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
             l1 = l1.next;
             l2 = l2.next;
-            addTwoNumbers addTwoNumbers = new addTwoNumbers();
+            AddTwoNumbers2 addTwoNumbers2 = new AddTwoNumbers2();
             double a = 0, b = 0;
             int k = 0, r = 0;
-            ListNode head3 = addTwoNumbers.new ListNode(0);
+            ListNode head3 = addTwoNumbers2.new ListNode(0);
             do {//获取链表1的值
                 a += Math.pow(10, k) * l1.val;
                 l1 = l1.next;
@@ -74,7 +74,7 @@ public class addTwoNumbers {
 //                u--;
                 ListNode p3 = head3;
                 while (u >= 0) {//从数组取出存入链表
-                    p3.next = addTwoNumbers.new ListNode(pos[u]);
+                    p3.next = addTwoNumbers2.new ListNode(pos[u]);
                     p3 = p3.next;
                     u--;
                 }
@@ -89,11 +89,9 @@ public class addTwoNumbers {
                 int x = l1 == null ? 0 : l1.val;
                 int y = l2 == null ? 0 : l2.val;
                 int sum = x + y + carry;
-
-                carry = sum / 10;
+                carry = sum / 10;//判断是否有进位
                 sum = sum % 10;
                 cur.next = new ListNode(sum);
-
                 cur = cur.next;
                 if (l1 != null)
                     l1 = l1.next;
