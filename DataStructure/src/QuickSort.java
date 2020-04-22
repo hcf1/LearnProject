@@ -4,12 +4,12 @@ public class QuickSort {
     public void sort(int[] arr, int left, int right) {
         int position = 0;//将左右两边分隔开，并非主元
         if (left < right) {
-            if (right - left + 1 > 100) {
+            if (right - left <= 1) {
+                selectionSort(arr, left, right);
+            } else {
                 position = partition(arr, left, right);
                 sort(arr, left, position - 1);
                 sort(arr, position + 1, right);
-            } else {
-                selectionSort(arr, left, right);
             }
         }
     }
@@ -17,7 +17,7 @@ public class QuickSort {
     //递归选择交换
     private int partition(int[] arr, int left, int right) {
         int pivot = getMidThree(arr, left, right);
-//        int pivot=arr[right];
+//        int pivot=arr[right];//直接取最右元素作为主元
         int i = left, j = right - 2;
 //        int i = left, j = right - 1;
         while ((i < j)) {
@@ -36,7 +36,7 @@ public class QuickSort {
                 break;
             }
         }
-        if (i >j)
+        if (i > j)
             swap(arr, i, right - 1);//将i和主元进行交换
 //            swap(arr, i, right);
         return i;
@@ -51,7 +51,7 @@ public class QuickSort {
 
     //     返回主元的值，顺便将比主元大的值放在了最右边，将主元放在right-1，只需比较前right-2
     private int getMidThree(int[] arr, int left, int right) {
-        int mid = (right+left) / 2;
+        int mid = (right + left) / 2;
         if (arr[left] > arr[mid]) {
             swap(arr, left, mid);
         }
@@ -103,3 +103,6 @@ public class QuickSort {
 
     }
 }
+//当cutOff为10的时候效率最高，给100万排序只需要150ms左右
+//快排1000:0.2ms,1000,0:2ms,1000,00:20ms,100万：200ms
+//选择1000:3ms，1000,0:60ms,1000,00:6000ms

@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/DataStructure.iml" filepath="$PROJECT_DIR$/DataStructure/DataStructure.iml" />
       <module fileurl="file://$PROJECT_DIR$/LearnProject.iml" filepath="$PROJECT_DIR$/LearnProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/leetcode/leetcode.iml" filepath="$PROJECT_DIR$/leetcode/leetcode.iml" />
-      <module fileurl="file://$PROJECT_DIR$/数据结构/数据结构.iml" filepath="$PROJECT_DIR$/数据结构/数据结构.iml" />
     </modules>
   </component>
 </project>
