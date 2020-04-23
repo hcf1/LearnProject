@@ -25,8 +25,9 @@ public class QuickSort {
                 i++;
             }
             while (arr[j] > pivot) {
-                if (j > 0)
+                if (j > 0) {
                     j--;
+                }
             }
             if (i < j) {
                 swap(arr, i, j);
@@ -36,8 +37,9 @@ public class QuickSort {
                 break;
             }
         }
-        if (i > j)
+        if (i > j) {
             swap(arr, i, right - 1);//将i和主元进行交换
+        }
 //            swap(arr, i, right);
         return i;
     }
