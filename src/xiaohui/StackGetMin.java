@@ -1,4 +1,4 @@
-package XiaoHui;
+package xiaohui;
 
 import java.util.LinkedList;
 
