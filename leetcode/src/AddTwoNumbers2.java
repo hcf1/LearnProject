@@ -93,10 +93,12 @@ public class AddTwoNumbers2 {
                 sum = sum % 10;
                 cur.next = new ListNode(sum);
                 cur = cur.next;
-                if (l1 != null)
+                if (l1 != null) {
                     l1 = l1.next;
-                if (l2 != null)
+                }
+                if (l2 != null) {
                     l2 = l2.next;
+                }
             }
             if (carry == 1) {
                 cur.next = new ListNode(carry);

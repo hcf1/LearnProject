@@ -39,11 +39,12 @@ public class DownUtil {
 
     public static void main(String[] args) throws Exception {
         // 初始化DownUtil对象
-        final DownUtil downUtil = new DownUtil("http://www.crazyit.org/"
-                + "attachments/month_1403/1403202355ff6cc9a4fbf6f14a.png"
+        final DownUtil downUtil = new DownUtil("https://img-blog.csdnimg.cn/20190314222017181.png?x-oss-process=" +
+                "image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNjE1MDQ5,size_16,color_FFFFFF,t_70"
                 , "ios.png", 4);
         // 开始下载
         downUtil.download();
+        //绘制完成进度的线程
         new Thread(() -> {
             while (downUtil.getCompleteRate() < 1) {
                 // 每隔0.1秒查询一次任务的完成进度，
@@ -51,7 +52,7 @@ public class DownUtil {
                 System.out.println("已完成："
                         + downUtil.getCompleteRate());
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (Exception ex) {
                 }
             }
@@ -146,7 +147,7 @@ public class DownUtil {
                 InputStream inStream = conn.getInputStream();
                 // 跳过startPos个字节，表明该线程只下载自己负责哪部分文件。
                 inStream.skip(this.startPos);
-                byte[] buffer = new byte[1024];
+                byte[] buffer = new byte[15000];
                 int hasRead = 0;
                 // 读取网络数据，并写入本地文件
                 while (length < currentPartSize
