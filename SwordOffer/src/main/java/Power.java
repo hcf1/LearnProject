@@ -5,6 +5,7 @@
  */
 public class Power {
     public boolean ifError = false;
+
     /**
      * 直接将base重复乘exponent次,时间复杂度O(n)
      * 缺点：未考虑指数为0和负数
@@ -49,16 +50,17 @@ public class Power {
                 ifError = true;
                 return 0;
             }
-            for (int i = 0; i >= exponent;i--) {
+            for (int i = 0; i >= exponent; i--) {
                 number /= base;
             }
         }
         return number;
     }
-/**
- * 利用公式：偶数：a**n=a**(n/2)*a**(n/2)；奇数：a**n=a**((n-1)/2)*a**((n-1)/2)*a
- * 时间复杂度为O(logn)
- * */
+
+    /**
+     * 利用公式：偶数：a**n=a**(n/2)*a**(n/2)；奇数：a**n=a**((n-1)/2)*a**((n-1)/2)*a
+     * 时间复杂度为O(logn)
+     */
     double power3(double base, int exponent) {
         if (exponent == 0) {
             return 1;
