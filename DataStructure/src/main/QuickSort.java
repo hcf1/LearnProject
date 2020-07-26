@@ -1,3 +1,5 @@
+package main;
+
 import java.util.Random;
 
 public class QuickSort {
@@ -105,6 +107,7 @@ public class QuickSort {
 
     }
 }
+
 //当cutOff为10的时候效率最高，给100万排序只需要150ms左右
 //快排1000:0.2ms,1000,0:2ms,1000,00:20ms,100万：200ms
 //选择1000:3ms，1000,0:60ms,1000,00:6000ms
