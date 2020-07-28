@@ -1,5 +1,5 @@
 workspace
 .project
 .classpath
-out/*
-SwordOffer/target/*
+out
+SwordOffer/target
