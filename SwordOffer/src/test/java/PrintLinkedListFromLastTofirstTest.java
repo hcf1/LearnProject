@@ -2,8 +2,26 @@ import org.jetbrains.annotations.NotNull;
 
 class PrintLinkedListFromLastTofirstTest {
     public static void main(String[] args) {
-        PrintLinkedListFromLastTofirst.ListNode head = creatListNode();
-        PrintLinkedListFromLastTofirst.reverse4(head);
+//        PrintLinkedListFromLastTofirst.ListNode head = creatListNode();
+//        PrintLinkedListFromLastTofirst.reverse4(head);
+        /*正式批*/
+//        PrintLinkedListFromLastTofirst.Reverse11.reverse(createNode());
+        PrintLinkedListFromLastTofirst.reverse22(createNode());
+    }
+
+    /**
+     * 正式批
+     */
+    private static PrintLinkedListFromLastTofirst.LinkNode createNode() {
+        PrintLinkedListFromLastTofirst.LinkNode p;
+        PrintLinkedListFromLastTofirst.LinkNode head = new PrintLinkedListFromLastTofirst.LinkNode(1);
+        p = head;
+        p.next = new PrintLinkedListFromLastTofirst.LinkNode(2);
+        p = p.next;
+        p.next = new PrintLinkedListFromLastTofirst.LinkNode(3);
+        p = p.next;
+        p.next = null;
+        return head;
     }
 
     @NotNull

@@ -1,6 +1,7 @@
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 
 /**
  * 从尾到头输出链表
@@ -25,6 +26,32 @@ public class PrintLinkedListFromLastTofirst {
             }
         } else {
             return;
+        }
+    }
+
+    /**
+     * 正式批
+     */
+    static class Reverse11 {
+        static void reverse(LinkNode linkNode) {
+            LinkNode p = linkNode;
+            LinkedList<Integer> linkedList = new LinkedList<Integer>();
+            while (p != null) {
+                linkedList.push(p.data);
+                p = p.next;
+            }
+            while (linkedList.size() > 0) {
+                System.out.println(linkedList.pop());
+            }
+        }
+    }
+
+    static class LinkNode {
+        LinkNode next;
+        int data;
+
+        LinkNode(int data) {
+            this.data = data;
         }
     }
 
@@ -56,9 +83,34 @@ public class PrintLinkedListFromLastTofirst {
         } else {
             return;
         }
-        while (head!= null&&head.next!=null) {
-            head=head.next;
+        while (head != null && head.next != null) {
+            head = head.next;
             System.out.println(head.value);
+        }
+    }
+
+    /**
+     * 正式批
+     */
+    static void reverse22(LinkNode linkNode) {
+        LinkNode pre, p, next;
+        pre = linkNode;
+        p = pre.next;
+        pre.next=null;
+        next = p.next;
+        while (p != null) {
+            p.next = pre;
+            pre = p;
+            p = next;
+            if (next == null) {
+                break;
+            }
+            next=next.next;
+        }
+        linkNode = pre;
+        while (linkNode != null) {
+            System.out.println(linkNode.data);
+            linkNode = linkNode.next;
         }
     }
 
@@ -78,12 +130,12 @@ public class PrintLinkedListFromLastTofirst {
      * 方法4：Collections.reverse(),将链表装入List，然后反转(第一个与最后一个交换,第二个与倒数第二个交换...)。时间复杂度O(n)，空间复杂度O(n)
      */
     static void reverse4(ListNode node) {
-        if (node!=null&&node.next != null) {
-            node=node.next;
-            ArrayList<Integer> list = new ArrayList<Integer> ();
+        if (node != null && node.next != null) {
+            node = node.next;
+            ArrayList<Integer> list = new ArrayList<Integer>();
             while (node != null) {
                 list.add(node.value);
-                node= node.next;
+                node = node.next;
             }
             Collections.reverse(list);
             for (Integer value : list) {
@@ -92,6 +144,7 @@ public class PrintLinkedListFromLastTofirst {
         }
         return;
     }
+
     static class ListNode {
         int value;
         ListNode next;
