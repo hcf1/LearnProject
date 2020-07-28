@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 /**
  * @author hasee
@@ -115,6 +116,29 @@ public class RepeatNumber {
         }
     }
 
+    static class findRepeatNumber {
+        void find(int[] list) {
+            int pos = 0;
+            while (pos < list.length) {
+                if (list[pos] != pos) {
+                    if (list[pos] == list[list[pos]]) {
+                        System.out.printf("重复:"+list[pos]);
+                        break;
+                    }
+                    swap(list, pos, list[pos]);
+                } else {
+                    pos++;
+                }
+            }
+        }
+
+        void swap(int[] list, int left, int right) {
+            int temp = list[left];
+            list[left] = list[right];
+            list[right] = temp;
+        }
+    }
+
     /**
      * 题目二
      * 不修改数组找出重复的数字。
@@ -145,13 +169,16 @@ public class RepeatNumber {
             } else {
                 System.out.println(left);
                 ArrayList<Integer> arrayList = new ArrayList();
-                arrayList.sort((a,b)->{return a>b?0:1;});
+                arrayList.sort((a, b) -> {
+                    return a > b ? 0 : 1;
+                });
             }
         }
         //判断元素是否符合要求
+
         /**
          * 求数组中的元素值在left~mid区间内的数量
-         * */
+         */
         int getCount(int[] array, int left, int mid) {
             int count = 0;
             for (int i = 0; i < array.length; ++i) {
