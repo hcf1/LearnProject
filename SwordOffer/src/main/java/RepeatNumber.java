@@ -116,13 +116,16 @@ public class RepeatNumber {
         }
     }
 
+    /**
+     * 正式批
+     */
     static class findRepeatNumber {
         void find(int[] list) {
             int pos = 0;
             while (pos < list.length) {
                 if (list[pos] != pos) {
                     if (list[pos] == list[list[pos]]) {
-                        System.out.printf("重复:"+list[pos]);
+                        System.out.printf("重复:" + list[pos]);
                         break;
                     }
                     swap(list, pos, list[pos]);

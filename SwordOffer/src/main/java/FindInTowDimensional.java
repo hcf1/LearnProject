@@ -20,16 +20,45 @@ public class FindInTowDimensional {
                         return true;
                     }
                 } //向下遍历
-                for (int down = i+1; down < rows; down++) {
+                for (int down = i + 1; down < rows; down++) {
                     if (array[down][i] == target) {
                         return true;
                     }
                 }
             }
         }
-        if (array[Math.min(rows, target)-1][Math.min(rows, target)-1]==target) {
+        if (array[Math.min(rows, target) - 1][Math.min(rows, target) - 1] == target) {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 正式批
+     */
+    static class FindInTowDimensional1 {
+        static boolean find(int[][] list, int target) {
+            int diagonal = 0;
+            for (; diagonal < Math.min(list.length, list[0].length); diagonal++) {
+                int diagonalNum = list[diagonal][diagonal];
+                if (diagonalNum < target) {
+                    diagonal++;
+                } else if (diagonalNum == target) {
+                    return true;
+                } else {
+                    break;
+                }
+            }//回退到对角线上一个数，开始向下遍历
+            int row = diagonal - 1;
+            int column = row;
+            for (; row < list.length; row++) {
+                if (list[row][column] == target) {
+                    return true;
+                } else if (list[row][column] > target) {
+                    return false;
+                }
+            }
+            return false;
+        }
     }
 }
