@@ -41,7 +41,7 @@ public class FindPathInMatrix {
      * 找到路径的起点
      */
     int[][] findFirstPos() {
-        int[][] pos = new int[array.length*array[0].length][2];
+        int[][] pos = new int[array.length * array[0].length][2];
         int k = 0;
         for (int i = 0; i < array.length; ++i) {
             for (int j = 0; j < array[i].length; j++) {
@@ -131,5 +131,61 @@ public class FindPathInMatrix {
             return true;
         }
         return false;
+    }
+}
+
+/**
+ * 正式批
+ */
+class FindPathInMatrix1 {
+    boolean[][] hasBeenReached;
+    char[] target;
+    char[][] matrix;
+    boolean findFlag = false;
+
+    boolean findPath(char[][] matrix, char[] target) {
+        this.matrix = matrix;
+        this.target = target;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                this.hasBeenReached = new boolean[matrix.length][matrix[0].length];
+                findCore(0, new int[]{i, j}, hasBeenReached);
+                if (findFlag) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void findCore(int targetPos, int[] pos, boolean[][] hasBeenReached) {
+        if (target[targetPos] == matrix[pos[0]][pos[1]]) {//当前是否是目标
+            if (targetPos == target.length - 1) {//已经找到最后一个
+                findFlag = true;
+                System.out.println(target[targetPos]);
+                return;
+            }
+            hasBeenReached[pos[0]][pos[1]] = true;
+            targetPos++;
+        } else {
+            return;
+        }
+        if (pos[1] + 1 < matrix[0].length && !hasBeenReached[pos[0]][pos[1] + 1]) {//未出界，未进入过
+            ++pos[1];
+            findCore(targetPos, pos, hasBeenReached);
+        }
+        if (pos[0] + 1 < matrix.length && !hasBeenReached[pos[0] + 1][pos[1]]) {//未出界，未进入过
+            ++pos[0];
+            findCore(targetPos, pos, hasBeenReached);
+        }
+        if (pos[1] - 1 >= 0 && !hasBeenReached[pos[0]][pos[1] - 1]) {//未出界，未进入过
+            --pos[1];
+            findCore(targetPos, pos, hasBeenReached);
+        }
+        if (pos[0] - 1 >= 0 && !hasBeenReached[pos[0] - 1][pos[1]]) {//未出界，未进入过
+            --pos[0];
+            findCore(targetPos, pos, hasBeenReached);
+        }
+        System.out.println(target[targetPos-1]);
     }
 }
