@@ -10,7 +10,9 @@ public class QuickSortSimple {
             sort(list, left, pivot - 1);
             sort(list, pivot + 1, right);
         } else if (list != null && right - left == 1) {
-            swap(list, left, right);
+            if (list[left] > list[right]) {
+                swap(list, left, right);
+            }
         }
     }
 
