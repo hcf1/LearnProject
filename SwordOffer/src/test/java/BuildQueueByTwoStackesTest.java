@@ -8,7 +8,7 @@ class BuildQueueByTwoStackesTest {
     }
 
     private static void testCreateStack() {
-        BuildStackByTwoQueues stack = new BuildStackByTwoQueues();
+        BuildStackByTwoQueues1 stack = new BuildStackByTwoQueues1();
         stack.push(1);
         stack.push(2);
         System.out.println(stack.pop());
@@ -21,7 +21,7 @@ class BuildQueueByTwoStackesTest {
     }
 
     private static void testCreateQueue() {
-        BuildQueueByTwoStackes queue = new BuildQueueByTwoStackes();
+        BuildQueueByTwoStackes1 queue = new BuildQueueByTwoStackes1();
         queue.offer(1);
         queue.offer(2);
         System.out.println(queue.poll());

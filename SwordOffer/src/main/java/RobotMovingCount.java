@@ -18,7 +18,7 @@ public class RobotMovingCount {
     private int row;
     private int column;
 
-    RobotMovingCount(int row, int column,int k) {
+    RobotMovingCount(int row, int column, int k) {
         this.flags = new boolean[row][column];
         this.k = k;
         this.row = row;
@@ -28,13 +28,13 @@ public class RobotMovingCount {
     /**
      * 返回机器人能到达的格子数
      *
-     * @param r    当前行
+     * @param r 当前行
      * @param c 当前列
      */
     int movingCount(int r, int c) {
-        if (r >= 0 && r <= row-1 && c >= 0 && c <= column-1 && flags[r][c] == false && checkNumber(r, c)) {
+        if (r >= 0 && r <= row - 1 && c >= 0 && c <= column - 1 && flags[r][c] == false && checkNumber(r, c)) {
             int steps = 1;
-            flags[r][c]=true;
+            flags[r][c] = true;
             steps += movingCount(r, c + 1) + movingCount(r + 1, c) +
                     movingCount(r, c - 1) + movingCount(r - 1, c);
             return steps;
@@ -52,6 +52,56 @@ public class RobotMovingCount {
             num += column % 10;
             column = column / 10;
         }
-        return num <= k?true : false;
+        return num <= k ? true : false;
+    }
+}
+
+/**
+ * 正式版
+ */
+class RobotMovingCount1 {
+    int count = 0;
+    boolean[][] matrix;
+    int k;
+
+    Integer findNum(boolean[][] matrix, int k) {
+        if (matrix == null || matrix.length == 0 || k < 0) {
+            return null;
+        }
+        this.matrix = matrix;
+        this.k = k;
+        findCore(new int[]{0, 0}, 0);
+        return count;
+    }
+
+    private void findCore(int[] pos, int kNum) {
+        matrix[pos[0]][pos[1]] = true;
+        if (pos[1] + 1 < matrix[0].length && kNum <= k && !matrix[pos[0]][pos[1]+1]) {
+            findCore(new int[]{pos[0],pos[1]+1}, getKNum(pos));
+        }
+        if (pos[0] + 1 < matrix.length && kNum <= k && !matrix[pos[0]+1][pos[1]]) {
+            findCore(new int[]{pos[0]+1,pos[1]}, getKNum(pos));
+        }
+        if (pos[1] - 1 >= 0 && kNum <= k && !matrix[pos[0]][pos[1]-1]) {
+            findCore(new int[]{pos[0],pos[1]-1}, getKNum(pos));
+        }
+        if (pos[1] - 1 >= 0 && kNum <= k && !matrix[pos[0]-1][pos[1]]) {
+            findCore(new int[]{pos[0]-2,pos[1]}, getKNum(pos));
+        }
+        count++;
+    }
+
+    private int getKNum(int[] pos) {
+        int n = 10;
+        int sum = 0;
+        while (pos[0] != 0) {
+            sum += pos[0] % n;
+            pos[0] /= 10;
+        }
+        while (pos[1] != 0) {
+            sum += pos[1] % n;
+            pos[1] /= 10;
+        }
+        return sum;
     }
 }

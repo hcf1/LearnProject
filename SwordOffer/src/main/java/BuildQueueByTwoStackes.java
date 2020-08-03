@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
  * 用两个栈实现一个队列
  * 思路：offer进去的元素先进入一个栈，当要poll的时候，如果另一个栈有元素，则直接pop出去。如果是空的，就先把有元素的这个栈里的全部元素
  * 移入另一个栈，然后再取出
+ *
  * @author hasee
  */
 public class BuildQueueByTwoStackes {
@@ -27,6 +28,33 @@ public class BuildQueueByTwoStackes {
         }
     }
 }
+/**
+ * 正式批
+ */
+class BuildQueueByTwoStackes1{
+    ArrayDeque<Integer> arrayDeque1 = new ArrayDeque<>();
+    ArrayDeque<Integer> arrayDeque2 = new ArrayDeque<>();
+
+    void offer(int value) {
+        arrayDeque1.push(value);
+    }
+
+    Integer poll() {
+        if (!arrayDeque2.isEmpty()) {
+            return arrayDeque2.pop();
+        } else {
+            while (!arrayDeque1.isEmpty()) {
+                arrayDeque2.push(arrayDeque1.pop());
+            }
+            if (!arrayDeque2.isEmpty()) {
+                return arrayDeque2.pop();
+            } else {
+                return null;
+            }
+        }
+    }
+}
+
 /**
  * 使用两个队列实现一个栈
  * 思路：每次留出一个空的队列，pop时先将一个队列中的n-1个元素移入一个空队列，将另一个队列中剩下的最后一个元素弹出
@@ -55,6 +83,37 @@ class BuildStackByTwoQueues {
                 queue2.offer(queue1.poll());
             }
             return queue1.poll();
+        }
+    }
+}
+/**
+ * 正式批
+ */
+class BuildStackByTwoQueues1{
+    ArrayDeque<Integer> arrayDeque1 = new ArrayDeque<>();
+    ArrayDeque<Integer> arrayDeque2 = new ArrayDeque<>();
+
+    void push(int value) {
+        arrayDeque1.offer(value);
+    }
+
+    Integer pop() {
+        if (arrayDeque2.isEmpty()) {//1往2移
+            while (arrayDeque1.size()>1) {
+                arrayDeque2.offer(arrayDeque1.poll());
+            }
+            if (arrayDeque1.size() == 0) {
+                return null;
+            }
+            return arrayDeque1.poll();
+        } else {
+            while (arrayDeque2.size()>1) {
+                arrayDeque1.offer(arrayDeque2.poll());
+            }
+            if (arrayDeque2.size() == 0) {
+                return null;
+            }
+            return arrayDeque2.poll();
         }
     }
 }

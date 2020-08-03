@@ -25,6 +25,24 @@ public class Fibonacci {
     }
 
     /**
+     * 正式批
+     */
+    static class Fibonacci11 {
+        Integer findNum(int pos) {
+            if (pos == 0) {
+                return 0;
+            }
+            if (pos == 1) {
+                return 1;
+            }
+            if (pos > 1) {
+                return findNum(pos - 1) + findNum(pos - 2);
+            }
+            return null;
+        }
+    }
+
+    /**
      * 使用map来存储计算过的值，避免重复计算,时间复杂度为O(n)，空间复杂度为O(n)
      */
     static class Fibonacci2 {
@@ -41,6 +59,29 @@ public class Fibonacci {
             return map.get(n);
         }
     }
+
+    /**
+     * 正式批
+     */
+    static class Fibonacci22 {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        {
+            map.put(0, 0);
+            map.put(1, 1);
+        }
+
+        Integer findNum(int pos) {
+            if (pos < 0) {
+                return null;
+            }
+            for (int i = 2; i <= pos; i++) {
+                map.put(i, map.get(i - 1) + map.get(i - 2));
+            }
+            return map.get(pos);
+        }
+    }
+
     /**
      * 直接计算，将前两个数的值赋值给后一个（a=0,b=1,c=a+b;a=b,b=c,c=a+b;...），避免重复计算,时间复杂度为O(n)，空间复杂度为O(1)
      */
@@ -52,22 +93,43 @@ public class Fibonacci {
             if (n == 0 || n == 1) {
                 return n;
             }
-            int a=0,b=1,c = 0;
+            int a = 0, b = 1, c = 0;
             for (int i = 2; i <= n; i++) {
-                c=a+b;
-                a=b;
-                b=c;
+                c = a + b;
+                a = b;
+                b = c;
+            }
+            return c;
+        }
+    }
+    /**
+     * 正式批
+     */
+    static class Fibonacci33{
+        Integer findNum(int pos) {
+            if (pos < 0) {
+                return null;
+            }
+            if (pos == 0 || pos == 1) {
+                return pos;
+            }
+            int a = 0, b = 1, c = a + b;
+            for (int i = 3; i <= pos; i++) {
+                a = b;
+                b = c;
+                c = a + b;
             }
             return c;
         }
     }
 }
+
 /**
  * 一只青蛙可以跳上1级和2级台阶，求它跳上n级台阶共有多少种跳法
  * 思路：青蛙可以有两种跳法，如果跳了1个台阶，那么还剩n-1个，如果跳了2个，还剩n-2个
  * 所以有f(n)=f(n-1)+f(n-2)
  * 如果青蛙有n种跳法，那么有：f(n)=f(n-1)+f(n-2)+...+f(1)+1=2**(n-1)
- * */
+ */
 class FrogJump {
     static Integer countNums(int n) {
         if (n < 0) {
@@ -76,9 +138,9 @@ class FrogJump {
         if (n == 0 || n == 1) {
             return n;
         }
-        int a=1, b=2, c=0;
+        int a = 1, b = 2, c = 0;
         for (int i = 3; i <= n; ++i) {
-            c=a+b;
+            c = a + b;
             a = b;
             b = c;
         }
