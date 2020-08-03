@@ -31,7 +31,7 @@ public class Pinduoduo {
             System.out.println("paradox");
             return;
         }
-        for (int stepDistance : stepDistances) {
+        for (int stepDistance : stepDistances) {//原题是N次筛子之前，不包括最后一次，即如果是最后一次筛子到达终点，也不能输出paradox
             if (targetDistance - stepDistance == 0) {
                 System.out.println("paradox");
                 return;
