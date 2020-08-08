@@ -24,9 +24,9 @@ public class LRU146 {
 
     public void put(int key, int value) {
         lruCache.put(key, value);
-        lruCache.put(key, lruCache.remove(key));
+        lruCache.put(key, lruCache.remove(key));//如果已经存在了，则取出来重现添加到队尾，队尾是最近访问的
         if (lruCache.size() > initCapacity) {
-            int oldKey = lruCache.keySet().iterator().next();
+            int oldKey = lruCache.keySet().iterator().next();//取出队头删除
             lruCache.remove(oldKey);
         }
     }
