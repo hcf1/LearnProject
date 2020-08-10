@@ -30,7 +30,7 @@ public class FrogJump {
             }
         }
         for (int i = 0; i < list.length; i++) {
-            System.out.println(hashMap.get(list[i])%10007);
+            System.out.println(hashMap.get(list[i]) % 10007);
         }
     }
 }
