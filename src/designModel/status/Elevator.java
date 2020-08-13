@@ -9,6 +9,11 @@ package designModel.status;
  * 停止 态	yes	no	yes	no
  */
 public class Elevator {
+    public static void main(String[] args) {
+        Elevator elevator = new Elevator();
+        elevator.setMyStatus(new stoppingStatus(elevator));
+        elevator.open();
+    }
     LiftStatus opening, closing, stopping, running;
     LiftStatus myStatus;
     {
@@ -114,7 +119,7 @@ class openingStatus extends LiftStatus {
 
     @Override
     void closeDoor() {
-        elevator.setMyStatus(elevator.getMyStatus());
+        elevator.setMyStatus(elevator.getClosing());
         elevator.close();
     }
 
@@ -128,19 +133,19 @@ class closingStatus extends LiftStatus {
 
     @Override
     void stop() {
-        elevator.setMyStatus(elevator.getMyStatus());
+        elevator.setMyStatus(elevator.getStopping());
         elevator.stop();
     }
 
     @Override
     void run() {
-        elevator.setMyStatus(elevator.getMyStatus());
+        elevator.setMyStatus(elevator.getRunning());
         elevator.run();
     }
 
     @Override
     void openDoor() {
-        elevator.setMyStatus(elevator.getMyStatus());
+        elevator.setMyStatus(elevator.getOpening());
         elevator.open();
     }
 
@@ -158,7 +163,7 @@ class runStatus extends LiftStatus {
 
     @Override
     void stop() {
-        elevator.setMyStatus(elevator.getMyStatus());
+        elevator.setMyStatus(elevator.getStopping());
         elevator.stop();
     }
 
@@ -196,7 +201,7 @@ class stoppingStatus extends LiftStatus {
 
     @Override
     void openDoor() {
-        elevator.setMyStatus(elevator.getMyStatus());
+        elevator.setMyStatus(elevator.getOpening());
         elevator.open();
     }
 
