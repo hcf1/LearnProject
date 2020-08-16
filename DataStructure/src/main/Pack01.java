@@ -12,7 +12,7 @@ public class Pack01 {
                 if (j < weights[i-1]) {//将涉及weights、values的i全部换成i-1；即1在原始数组中实际上代表第0个元素
                     f[i][j] = f[i - 1][j];
                 } else {
-                    f[i][j] = Math.max(f[i - 1][j], f[i - 1][j - weights[i-1]] + values[i-1]);//将f[i - 1][j - weights[i-1]] + values[i-1]中i-1改为i则是完全背包
+                    f[i][j] = Math.max(f[i - 1][j], f[i - 1][j - weights[i-1]] + values[i-1]);//将f[i - 1][j - weights[i-1]] + values[i-1]改为f[i][j - weights[i-1]] + values[i-1]则是完全背包
                 }
             }
         }
