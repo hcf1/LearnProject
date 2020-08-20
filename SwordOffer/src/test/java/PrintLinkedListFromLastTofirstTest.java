@@ -1,4 +1,3 @@
-import org.jetbrains.annotations.NotNull;
 
 class PrintLinkedListFromLastTofirstTest {
     public static void main(String[] args) {
@@ -24,7 +23,6 @@ class PrintLinkedListFromLastTofirstTest {
         return head;
     }
 
-    @NotNull
     private static PrintLinkedListFromLastTofirst.ListNode creatListNode() {
         PrintLinkedListFromLastTofirst.ListNode head = new PrintLinkedListFromLastTofirst.ListNode();
         PrintLinkedListFromLastTofirst.ListNode node = new PrintLinkedListFromLastTofirst.ListNode();
