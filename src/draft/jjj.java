@@ -1,7 +1,5 @@
 package draft;
 
-import javax.xml.soap.Node;
-
 public class jjj {
     public static void main(String[] args) {
         Node node = new Node(0, new Node(1, null, null), new Node(2, null, null));//根节点

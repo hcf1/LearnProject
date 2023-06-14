@@ -9,8 +9,5 @@
         <module name="SwordOffer" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="SwordOffer" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
